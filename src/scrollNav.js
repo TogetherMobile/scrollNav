@@ -230,8 +230,20 @@
       };
 
       $.each(S.sections.data, function(i) {
-        if ( !S.settings.showTopLink ? in_view(this) : in_view(this) && i > 0 && in_view(this) ) {
-          sections_active.push(this);
+        if ( !S.settings.showTopLink ) {
+          if ( in_view(this) ) {
+            sections_active.push(this);
+          }
+        } else {
+          if (i > 0) {
+            if ( in_view(this) ) {
+              sections_active.push(this);
+            }
+          } else {
+            if ( in_view(this) && win_top === 0) {
+              sections_active.push(this);
+            }
+          }
         }
         $.each(this.sub_sections, function() {
           if ( in_view(this) ) {
