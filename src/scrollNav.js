@@ -229,8 +229,8 @@
         return (section.top_offset >= boundry_top && section.top_offset <= boundry_bottom) || (section.bottom_offset > boundry_top && section.bottom_offset < boundry_bottom) || (section.top_offset < boundry_top && section.bottom_offset > boundry_bottom);
       };
 
-      $.each(S.sections.data, function() {
-        if ( in_view(this) ) {
+      $.each(S.sections.data, function(i) {
+        if ( !S.settings.showTopLink ? in_view(this) : in_view(this) && i > 0 && in_view(this) ) {
           sections_active.push(this);
         }
         $.each(this.sub_sections, function() {
